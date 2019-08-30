@@ -1,0 +1,17 @@
+.example-card {
+  max-width: 500px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.custom-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-white-chips {
+  background-color: white;
+}

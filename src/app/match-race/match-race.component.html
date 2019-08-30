@@ -1,0 +1,40 @@
+<h1>Match Race</h1>
+
+<div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="space-between" >
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Racer #1" aria-label="Car" [matAutocomplete]="auto" [formControl]="carCtrl" [(ngModel)]="car1">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let car of filteredCars1 | async" [value]="car.Marque + ' '+ car.Modele + ' ' + car.Serie" (click)="setCar4Race1(car)">
+        <img class="example-option-img" aria-hidden [src]="car.Image" height="25">
+        <span>{{car.Marque}}</span> |
+        <small>Modele: {{car.Modele}} {{car.Serie}}</small>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+<h2>{{car1}}</h2> 
+<div *ngIf="currentCar1" >
+    <img class="example-option-img" aria-hidden [src]="currentCar1.Image" height="200">
+</div>
+</form>
+
+
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Racer #2" aria-label="Car" [matAutocomplete]="auto2" [formControl]="carCtrl2" [(ngModel)]="car2">
+      <mat-autocomplete #auto2="matAutocomplete">
+        <mat-option *ngFor="let car of filteredCars2 | async" [value]="car.Marque + ' '+ car.Modele + ' ' + car.Serie" (click)="setCar4Race2(car)">
+          <img class="example-option-img" aria-hidden [src]="car.Image" height="25">
+          <span>{{car.Marque}}</span> |
+          <small>Modele: {{car.Modele}} {{car.Serie}}</small>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  <h2>{{car2}}</h2> 
+  <div *ngIf="currentCar2" >
+      <img class="example-option-img" aria-hidden [src]="currentCar2.Image" height="200">
+  </div>
+  </form>
+  </div>

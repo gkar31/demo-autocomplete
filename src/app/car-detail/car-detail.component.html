@@ -1,0 +1,97 @@
+<!-- p>
+You have selected the musclecar {{ idCar }}
+</p>
+<h1 *ngIf="currentCar"> {{currentCar.Marque}} &nbsp; {{currentCar.Modele}} &nbsp; {{ currentCar.Serie }}</h1>
+<ul *ngIf="currentCar">
+  <li>  {{currentCar.Cylindres}} cylindres </li>
+  <li>  {{currentCar.Cylindree}} litres </li>
+  <li>  <b>Puissance :</b> &nbsp; {{currentCar.Puissance_ch}} chevaux </li>
+  <li>  <b>Couple :</b> &nbsp; {{currentCar.Couple_Nm}} N.m </li>
+  <li>  <b>Vitesse Max. :</b> &nbsp; {{currentCar.VitesseMax_Kmh}} Km/h </li>
+  <li>  <b>0-100 km/h :</b> &nbsp; {{currentCar.acc_0_100}} secondes </li>
+  <li>  <b>0-200 km/h :</b> &nbsp; {{currentCar.acc_0_200}} seconde </li>
+  <li>  <b>400m D.a :</b> &nbsp; {{currentCar.acc_400m_DA}} secondes </li>
+  <li>  <b>1000m D.a :</b> &nbsp; {{currentCar.acc_1000m_DA}} secondes </li>
+  <li>  <b>Prix :</b> &nbsp; {{currentCar.Prix}} euros </li>
+</ul>
+<div *ngIf="currentCar">
+    <img  src="{{currentCar.Image}}" alt="No picture avalaible" height="315px" width="600px">
+  </div -->
+  <mat-spinner *ngIf="carLoading"  [ngClass]="'custom-center'"></mat-spinner>
+  <!-- img src="{{currentLogo.logo}}" / -->
+  <mat-chip-list>
+
+  </mat-chip-list>
+<div  *ngIf="!carLoading">
+
+
+  <mat-card class="example-card" [ngClass]="'custom-center'">
+    <mat-card-header>
+      <img mat-card-avatar class="example-header-image" src="{{currentLogo.logo}}" alt="no logo" *ngIf="currentLogo"/>
+      <mat-card-title> {{currentCar.Marque}} &nbsp; {{currentCar.Modele}} </mat-card-title>
+      <mat-card-subtitle> {{ currentCar.Serie }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{currentCar.Image}}" alt="No picture avalaible" height="315px" width="600px">
+    <mat-card-content>
+      <div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-chip color="primary" selected>V{{currentCar.Cylindres}}</mat-chip>
+        <mat-chip color="primary" selected>{{currentCar.Cylindree}} litres</mat-chip>
+        <mat-chip color="primary" selected>{{currentCar.Puissance_ch}} ch</mat-chip>
+        <mat-chip color="primary" selected>{{currentCar.Couple_Nm}} N.m</mat-chip>
+      </div>
+
+      <br />
+
+      <div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="center" >
+        <mat-chip style="background-color: white;" selected><mat-chip >Vitesse max.</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.VitesseMax_Kmh}} Km/h</mat-chip></mat-chip>
+      </div>
+      <br />
+      <div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-chip style="background-color: white;" selected><mat-chip >0-100 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_0_100}} sec.</mat-chip></mat-chip>
+        <mat-chip style="background-color: white;" selected><mat-chip >400m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_400m_DA}} sec.</mat-chip></mat-chip>
+      </div>
+
+      <br>
+
+      <div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="space-between" >
+        <mat-chip style="background-color: white;" selected><mat-chip >0-200 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_0_200}} sec.</mat-chip></mat-chip>
+        <mat-chip style="background-color: white;" selected><mat-chip >1000m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_1000m_DA}} sec.</mat-chip></mat-chip>
+      </div>
+
+      <br>
+
+      <div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="center" >
+        <mat-chip style="background-color: white;" selected><mat-chip >Prix</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.Prix}} euros</mat-chip></mat-chip>
+      </div>
+      <!-- span><h1>  <mat-chip color="primary" selected>V{{currentCar.Cylindres}}</mat-chip> &nbsp; <mat-chip color="primary" selected>{{currentCar.Cylindree}} litres</mat-chip> &nbsp; <mat-chip color="primary" selected>{{currentCar.Puissance_ch}} ch</mat-chip> &nbsp; <mat-chip color="primary" selected>{{currentCar.Couple_Nm}} N.m</mat-chip> &nbsp;</h1></span>
+      <span><h2>  <mat-chip >Vitesse max</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.VitesseMax_Kmh}} Km/h</mat-chip></h2></span>
+      <span><h2>  <mat-chip >0-100 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_0_100}} sec.</mat-chip> &nbsp;<mat-chip >0-200 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_0_200}} sec.</mat-chip></h2></span>
+      <span><h2>  <mat-chip >400m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_400m_DA}} sec.</mat-chip> &nbsp; <mat-chip >1000m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_1000m_DA}} sec.</mat-chip></h2></span>
+      <span><h2>  <mat-chip >Prix</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.Prix}} euros</mat-chip></h2></span -->
+
+        <ul *ngIf="currentCar">
+          <!-- li>  {{currentCar.Cylindres}} cylindres </li>
+          <li>  {{currentCar.Cylindree}} litres </li>
+          <li>  <b>Puissance :</b> &nbsp; {{currentCar.Puissance_ch}} chevaux </li>
+          <li>  <b>Couple :</b> &nbsp; {{currentCar.Couple_Nm}} N.m </li>
+          <li>  <b>Vitesse Max. :</b> &nbsp; {{currentCar.VitesseMax_Kmh}} Km/h </li>
+          <li>  <b>0-100 km/h :</b> &nbsp; {{currentCar.acc_0_100}} secondes </li>
+          <li>  <b>0-200 km/h :</b> &nbsp; {{currentCar.acc_0_200}} seconde </li>
+          <li>  <b>400m D.a :</b> &nbsp; {{currentCar.acc_400m_DA}} secondes </li>
+          <li>  <b>1000m D.a :</b> &nbsp; {{currentCar.acc_1000m_DA}} secondes </li>
+          <li>  <b>Prix :</b> &nbsp; {{currentCar.Prix}} euros </li -->
+        </ul>
+
+    </mat-card-content>
+  </mat-card>
+</div>
