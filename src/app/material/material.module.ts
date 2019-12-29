@@ -12,6 +12,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
 
 const Material = [
   MatButtonModule,
@@ -24,7 +26,9 @@ const Material = [
   MatAutocompleteModule,
   MatInputModule,
   MatFormFieldModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatTabsModule,
+  MatIconModule
 ];
 
 
