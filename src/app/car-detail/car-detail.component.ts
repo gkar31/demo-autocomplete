@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl  } from '@angular/platform-browser';
 
 import { CarsService } from './../cars.service';
 import { ICar } from './../car';
@@ -14,7 +15,10 @@ import { ILogo } from './../logo';
 export class CarDetailComponent implements OnInit {
   idCar="";
   carLoading=false;
-  constructor(private route: ActivatedRoute ,private _carService: CarsService) { }
+  safeUrl: SafeResourceUrl[] = [];
+  constructor(private route: ActivatedRoute ,private _carService: CarsService,  private _sanitizer: DomSanitizer) { 
+    
+  }
 
 public currentCar: ICar;
 public currentLogo: ILogo;
@@ -25,6 +29,15 @@ public currentLogo: ILogo;
     this.carLoading=true;
     this._carService.getCar(this.idCar).subscribe(data => {
       this.currentCar = data;
+      if (this.currentCar.gallery){
+
+        for (let vidUrl of this.currentCar.gallery.videos){
+          console.log('Video src :'+vidUrl);
+          this.safeUrl.push(this._sanitizer.bypassSecurityTrustResourceUrl(vidUrl));
+        }
+        console.log("safeUrl : "+this.safeUrl);
+        //this.safeUrl=this._sanitizer.bypassSecurityTrustResourceUrl(this.currentCar.gallery.videos[0]);
+      }
       console.log(data);
       this._carService.getLogoByName(data.Marque.toUpperCase()).subscribe(data2 => this.currentLogo = data2);
       this.carLoading=false;

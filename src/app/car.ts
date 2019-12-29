@@ -14,5 +14,11 @@ export interface ICar {
   Prix : String,
   Indice_Perf : Number,
   Image: String,
-  _id: String
+  _id: String,
+  gallery: IGallery;
+}
+
+export interface IGallery {
+  pictures: string[];
+  videos: string[];
 }

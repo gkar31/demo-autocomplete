@@ -4,7 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { CarsService } from './../cars.service';
-import { ICar } from './../car';
+import { ICar, IGallery } from './../car';
 
 const CAR_DATA: ICar[] = [
   { _id: "0",
@@ -22,7 +22,11 @@ VitesseMax_Kmh: 0,
 acc_0_100: 0,
 acc_0_200: 0,
 acc_1000m_DA: 0,
-acc_400m_DA: 0}
+acc_400m_DA: 0,
+gallery: {
+  pictures: [""],
+  videos: [""]
+}}
 ];
 
 @Component({

@@ -1,40 +1,172 @@
 <h1>Match Race</h1>
 
+
+
 <div class="container"
       fxLayout
       fxLayout="row" fxLayoutAlign="space-between" >
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Racer #1" aria-label="Car" [matAutocomplete]="auto" [formControl]="carCtrl" [(ngModel)]="car1">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let car of filteredCars1 | async" [value]="car.Marque + ' '+ car.Modele + ' ' + car.Serie" (click)="setCar4Race1(car)">
-        <img class="example-option-img" aria-hidden [src]="car.Image" height="25">
-        <span>{{car.Marque}}</span> |
-        <small>Modele: {{car.Modele}} {{car.Serie}}</small>
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-<h2>{{car1}}</h2> 
-<div *ngIf="currentCar1" >
-    <img class="example-option-img" aria-hidden [src]="currentCar1.Image" height="200">
-</div>
-</form>
 
-
-<form class="example-form">
+  <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Racer #2" aria-label="Car" [matAutocomplete]="auto2" [formControl]="carCtrl2" [(ngModel)]="car2">
-      <mat-autocomplete #auto2="matAutocomplete">
-        <mat-option *ngFor="let car of filteredCars2 | async" [value]="car.Marque + ' '+ car.Modele + ' ' + car.Serie" (click)="setCar4Race2(car)">
+      <input matInput placeholder="Racer #1" aria-label="Car" [matAutocomplete]="auto" [formControl]="carCtrl" [(ngModel)]="car1">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let car of filteredCars1 | async" [value]="car.Marque + ' '+ car.Modele + ' ' + car.Serie" (click)="setCar4Race1(car)">
           <img class="example-option-img" aria-hidden [src]="car.Image" height="25">
           <span>{{car.Marque}}</span> |
           <small>Modele: {{car.Modele}} {{car.Serie}}</small>
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-  <h2>{{car2}}</h2> 
-  <div *ngIf="currentCar2" >
-      <img class="example-option-img" aria-hidden [src]="currentCar2.Image" height="200">
+  
+  <div *ngIf="currentCar1" >
+      <mat-chip-list>
+        <mat-card class="example-card" [ngClass]="'custom-center'">
+          <mat-card-header>
+            <img mat-card-avatar class="example-header-image" src="{{currentLogo.logo}}" alt="no logo" *ngIf="currentLogo"/>
+            <mat-card-title> {{currentCar1.Marque}} &nbsp; {{currentCar1.Modele}} &nbsp; {{ currentCar1.Serie }}</mat-card-title>
+            <mat-card-subtitle> </mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="{{currentCar1.Image}}" alt="No picture avalaible" height="205px" width="380px">
+          <mat-card-content>
+            <div class="container"
+            fxLayout
+            fxLayout="row" fxLayoutAlign="space-between" >
+              <mat-chip color="primary" selected>V{{currentCar1.Cylindres}}</mat-chip>
+              <mat-chip color="primary" selected>{{currentCar1.Cylindree}} litres</mat-chip>
+              <mat-chip color="primary" selected>{{currentCar1.Puissance_ch}} ch</mat-chip>
+              <mat-chip color="primary" selected>{{currentCar1.Couple_Nm}} N.m</mat-chip>
+            </div>
+      
+            <br />
+      
+            <div class="container"
+            fxLayout
+            fxLayout="row" fxLayoutAlign="center" >
+              <mat-chip style="background-color: white;" selected><mat-chip >Vitesse max.</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar1.VitesseMax_Kmh}} Km/h</mat-chip></mat-chip>
+            </div>
+            <br />
+            <div class="container"
+            fxLayout
+            fxLayout="row" fxLayoutAlign="space-between" >
+              <mat-chip style="background-color: white;" selected><mat-chip >0-100 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar1.acc_0_100}} sec.</mat-chip></mat-chip>
+              <mat-chip style="background-color: white;" selected><mat-chip >400m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar1.acc_400m_DA}} sec.</mat-chip></mat-chip>
+            </div>
+      
+            <br>
+      
+            <div class="container"
+            fxLayout
+            fxLayout="row" fxLayoutAlign="space-between" >
+              <mat-chip style="background-color: white;" selected><mat-chip >0-200 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar1.acc_0_200}} sec.</mat-chip></mat-chip>
+              <mat-chip style="background-color: white;" selected><mat-chip >1000m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar1.acc_1000m_DA}} sec.</mat-chip></mat-chip>
+            </div>
+      
+            <br>
+      
+          </mat-card-content>
+          </mat-card>
+      </mat-chip-list>
+  </div>
+  
+  
+  
+  
+  <div *ngIf="race">
+      <div *ngIf="winner1==true">
+        <mat-chip-list>
+          <mat-chip color="warn" selected>Winner</mat-chip>
+        </mat-chip-list>
+      </div>
   </div>
   </form>
+
+
+  <form class="example-form">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Racer #2" aria-label="Car" [matAutocomplete]="auto2" [formControl]="carCtrl2" [(ngModel)]="car2">
+        <mat-autocomplete #auto2="matAutocomplete">
+          <mat-option *ngFor="let car of filteredCars2 | async" [value]="car.Marque + ' '+ car.Modele + ' ' + car.Serie" (click)="setCar4Race2(car)">
+            <img class="example-option-img" aria-hidden [src]="car.Image" height="25">
+            <span>{{car.Marque}}</span> |
+            <small>Modele: {{car.Modele}} {{car.Serie}}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    
+    <div *ngIf="currentCar2" >
+        <mat-chip-list>
+          <mat-card class="example-card" [ngClass]="'custom-center'">
+            <mat-card-header>
+              <img mat-card-avatar class="example-header-image" src="{{currentLogo.logo}}" alt="no logo" *ngIf="currentLogo"/>
+              <mat-card-title> {{currentCar2.Marque}} &nbsp; {{currentCar2.Modele}} &nbsp; {{ currentCar2.Serie }}</mat-card-title>
+              <mat-card-subtitle> </mat-card-subtitle>
+            </mat-card-header>
+            <img mat-card-image src="{{currentCar2.Image}}" alt="No picture avalaible" height="205px" width="380px">
+            <mat-card-content>
+              <div class="container"
+              fxLayout
+              fxLayout="row" fxLayoutAlign="space-between" >
+                <mat-chip color="primary" selected>V{{currentCar2.Cylindres}}</mat-chip>
+                <mat-chip color="primary" selected>{{currentCar2.Cylindree}} litres</mat-chip>
+                <mat-chip color="primary" selected>{{currentCar2.Puissance_ch}} ch</mat-chip>
+                <mat-chip color="primary" selected>{{currentCar2.Couple_Nm}} N.m</mat-chip>
+              </div>
+        
+              <br />
+        
+              <div class="container"
+              fxLayout
+              fxLayout="row" fxLayoutAlign="center" >
+                <mat-chip style="background-color: white;" selected><mat-chip >Vitesse max.</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar2.VitesseMax_Kmh}} Km/h</mat-chip></mat-chip>
+              </div>
+              <br />
+              <div class="container"
+              fxLayout
+              fxLayout="row" fxLayoutAlign="space-between" >
+                <mat-chip style="background-color: white;" selected><mat-chip >0-100 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar2.acc_0_100}} sec.</mat-chip></mat-chip>
+                <mat-chip style="background-color: white;" selected><mat-chip >400m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar2.acc_400m_DA}} sec.</mat-chip></mat-chip>
+              </div>
+        
+              <br>
+        
+              <div class="container"
+              fxLayout
+              fxLayout="row" fxLayoutAlign="space-between" >
+                <mat-chip style="background-color: white;" selected><mat-chip >0-200 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar2.acc_0_200}} sec.</mat-chip></mat-chip>
+                <mat-chip style="background-color: white;" selected><mat-chip >1000m Da</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar2.acc_1000m_DA}} sec.</mat-chip></mat-chip>
+              </div>
+        
+              <br>
+        
+            </mat-card-content>
+            </mat-card>
+            </mat-chip-list>
+    </div>
+
+    <div *ngIf="race">
+      <div *ngIf="winner2">
+        <mat-chip-list>
+          <mat-chip color="warn" selected>Winner</mat-chip>
+        </mat-chip-list>
+      </div>
+  </div>
+
+    </form>
+  </div>
+
+
+  <div class="container"
+      fxLayout
+      fxLayout="row" fxLayoutAlign="center" >
+
+    <div *ngIf="currentCar1">
+      <div class="button-row" *ngIf="currentCar2">
+        <button mat-raised-button color="primary" (click)="doTheRace(currentCar1,currentCar2)">Go !</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="race">
+    <h3>VROUM !!!</h3>
   </div>

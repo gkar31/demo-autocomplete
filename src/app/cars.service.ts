@@ -34,7 +34,11 @@ VitesseMax_Kmh: 0,
 acc_0_100: 0,
 acc_0_200: 0,
 acc_1000m_DA: 0,
-acc_400m_DA: 0}
+acc_400m_DA: 0,
+gallery: {
+  pictures: [""],
+  videos: [""]
+}}
 ];
 
   constructor(private http: HttpClient) { }

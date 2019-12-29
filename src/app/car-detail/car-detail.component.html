@@ -73,6 +73,28 @@ You have selected the musclecar {{ idCar }}
       fxLayout="row" fxLayoutAlign="center" >
         <mat-chip style="background-color: white;" selected><mat-chip >Prix</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.Prix}} euros</mat-chip></mat-chip>
       </div>
+
+<mat-accordion *ngIf="currentCar.gallery">
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Gallery
+        </mat-panel-title>
+        <mat-panel-description>
+          Pictures and Videos
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p *ngFor="let pict of currentCar.gallery.pictures">
+        <img src="{{pict}}" width="560" height="315" />
+      </p>
+
+      <p *ngFor="let vidSrc of safeUrl">
+          <iframe width="560" height="315" [src]="vidSrc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      </p>
+    </mat-expansion-panel>
+  </mat-accordion>
+
       <!-- span><h1>  <mat-chip color="primary" selected>V{{currentCar.Cylindres}}</mat-chip> &nbsp; <mat-chip color="primary" selected>{{currentCar.Cylindree}} litres</mat-chip> &nbsp; <mat-chip color="primary" selected>{{currentCar.Puissance_ch}} ch</mat-chip> &nbsp; <mat-chip color="primary" selected>{{currentCar.Couple_Nm}} N.m</mat-chip> &nbsp;</h1></span>
       <span><h2>  <mat-chip >Vitesse max</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.VitesseMax_Kmh}} Km/h</mat-chip></h2></span>
       <span><h2>  <mat-chip >0-100 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_0_100}} sec.</mat-chip> &nbsp;<mat-chip >0-200 Km/h</mat-chip> &nbsp; <mat-chip color="warn" selected>{{currentCar.acc_0_200}} sec.</mat-chip></h2></span>
